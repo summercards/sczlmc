@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="title">欢迎来到消消乐小游戏</view>
+  <button bindtap="startGame">开始游戏</button>
+  <button open-type="share">分享给好友</button>
+  <button bindtap="goRank">查看排行榜</button>
+</view>

@@ -1,0 +1,70 @@
+<view class="game-container">
+  <!-- 玩家属性 -->
+  <view class="player-stats">
+    <view>等级: {{player.level}}</view>
+    <view>攻击: {{player.attack}}</view>
+    <view>敏捷: {{player.agility}}</view>
+    <view>魔法: {{player.magic}}</view>
+  </view>
+
+  <!-- 中部信息栏 -->
+  <view class="middle-info">
+    <view>分数: {{score}}</view>
+    <view>剩余时间: {{timeLeft}}s</view>
+  </view>
+
+  <!-- 战斗场景 -->
+  <view class="battle-scene">
+    <view class="boss-hp-bar">
+      <view class="boss-hp-fill" style="width:{{(boss.hp / boss.maxHp * 100)}}%;"></view>
+      <text class="boss-hp-text">{{boss.hp}} / {{boss.maxHp}}</text>
+    </view>
+    <view class="boss-name">{{boss.name}}</view>
+    <image class="boss-image" src="path/to/boss.png"></image>
+    <image class="hero-image" src="path/to/hero.png"></image>
+  </view>
+
+  <!-- 战斗日志 -->
+  <scroll-view class="battle-log" scroll-y="true">
+    <block wx:for="{{battleLog}}" wx:key="index">
+      <view>{{item}}</view>
+    </block>
+  </scroll-view>
+
+  <!-- 棋盘区域 -->
+  <view class="grid-area">
+    <view class="grid">
+      <!-- 主方块 -->
+      <block wx:for="{{gridData}}" wx:key="index">
+        <view 
+          class="grid-item" 
+          data-index="{{index}}" 
+          bindtap="handleTap" 
+          style="transform: scale({{item.scale}}); top:{{item.top}}rpx; left:{{item.left}}rpx; background-color:{{item.color}};"
+        >
+          <!-- 功能方块的文字标识 -->
+          <text class="grid-text">
+            {{item.type === 'A' ? '攻' : item.type === 'C' ? '魔' : ''}}
+          </text>
+        </view>
+      </block>
+
+      <!-- 独立特效overlay -->
+      <block wx:for="{{overlayData}}" wx:key="*this">
+        <view 
+          class="overlay-item"
+          style="transform: scale({{item.scale}}); top:{{item.top}}rpx; left:{{item.left}}rpx; background-color:{{item.color}}; opacity:{{item.opacity}}"
+        ></view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 弹窗 -->
+  <view wx:if="{{showNextLevelModal}}" class="modal">
+    <view class="modal-content">
+      <text>关卡完成！本关得分：{{currentLevelScore}}</text>
+      <button bindtap="nextLevel">下一关</button>
+      <button bindtap="endGame">结束游戏</button>
+    </view>
+  </view>
+</view>

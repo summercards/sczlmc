@@ -1,0 +1,14 @@
+.rank-container {
+  padding: 20rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.rank-item {
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}

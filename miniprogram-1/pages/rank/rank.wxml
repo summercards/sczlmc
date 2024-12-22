@@ -1,0 +1,9 @@
+<view class="rank-container">
+  <view class="title">排行榜</view>
+  <block wx:for="{{rankList}}" wx:key="index">
+    <view class="rank-item">
+      <text>{{index+1}}. {{item.nickName}}: {{item.score}}</text>
+    </view>
+  </block>
+  <button bindtap="goHome">返回首页</button>
+</view>
